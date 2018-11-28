@@ -1,22 +1,17 @@
 package com.example.zaraky.tictactoe_android.controller;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zaraky.tictactoe_android.R;
 import com.example.zaraky.tictactoe_android.controller.retrofit.RetrofitClientInstance;
 import com.example.zaraky.tictactoe_android.controller.retrofit.User;
 import com.example.zaraky.tictactoe_android.controller.retrofit.UserService;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +22,7 @@ import retrofit2.Response;
 
 public class PlayerSelectActivity extends AppCompatActivity {
 
-    public ArrayList<String> userList = new ArrayList<String>();
+    public ArrayList<String> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +36,7 @@ public class PlayerSelectActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 for (User user : response.body()) {
-                    userList.add((String) user.getName());
+                    userList.add(user.getName());
                 }
                 initializePlayer();
             }
@@ -54,10 +49,10 @@ public class PlayerSelectActivity extends AppCompatActivity {
     }
 
     public void initializePlayer() {
-        Spinner list1 = (Spinner) findViewById(R.id.selectPlayer1);
-        Spinner list2 = (Spinner) findViewById(R.id.selectPlayer2);
+        Spinner list1 = findViewById(R.id.selectPlayer1);
+        Spinner list2 = findViewById(R.id.selectPlayer2);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, userList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, userList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         list1.setAdapter(adapter);
         list2.setAdapter(adapter);
