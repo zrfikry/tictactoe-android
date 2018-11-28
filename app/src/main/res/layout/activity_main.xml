@@ -4,15 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".controller.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:title="@string/app_name"
+            android:titleTextColor="@color/white">
+
+            <Button
+                android:id="@+id/resetBtn"
+                android:onClick="resetGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:text="RESET"
+                android:textSize="16dp"
+                android:layout_gravity="right"/>
+        </Toolbar>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rowCount="3"
+            android:columnCount="3"
+            android:layout_gravity="center"
+            android:padding="36dp">
+
+            <Button
+                android:id="@+id/btn0"
+                android:tag="00"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+            <Button
+                android:id="@+id/btn1"
+                android:tag="01"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+            <Button
+                android:id="@+id/btn2"
+                android:tag="02"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+
+            <Button
+                android:id="@+id/btn3"
+                android:tag="10"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+            <Button
+                android:id="@+id/btn4"
+                android:tag="11"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+            <Button
+                android:id="@+id/btn5"
+                android:tag="12"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+
+            <Button
+                android:id="@+id/btn6"
+                android:tag="20"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+            <Button
+                android:id="@+id/btn7"
+                android:tag="21"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+            <Button
+                android:id="@+id/btn8"
+                android:tag="22"
+                android:onClick="onCellClick"
+                style="@style/BtnStyle"/>
+
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/winnerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="48dp"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
