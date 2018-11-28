@@ -36,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
 
         if (board.markCell(row, col)) {
             btn.setText(board.player.toString());
-        }
 
-        // check if win
-        if (board.isCurrentPlayerWin(row, col)) {
-            winner.setText(board.player.toString() + " win!");
-            board.gameOver();
-        } else if (board.isDraw()) { // check if draw
-            winner.setText("Draw!");
-            board.gameOver();
-        } else {
-            board.changePlayer();
+            // check if win
+            if (board.isCurrentPlayerWin(row, col)) {
+                winner.setText(board.player.toString() + " win!");
+                board.gameOver();
+            } else if (board.isDraw()) { // check if draw
+                winner.setText("Draw!");
+                board.gameOver();
+            } else {
+                board.changePlayer();
+            }
         }
     }
 

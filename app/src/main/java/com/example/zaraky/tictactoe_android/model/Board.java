@@ -46,7 +46,7 @@ public class Board {
     }
 
     public boolean markCell(int row, int col) {
-        if (state != GameState.GAMEOVER) {
+        if (state != GameState.GAMEOVER && cells[row][col].getPlayer() == null) {
             cells[row][col].setPlayer(player);
             return true;
         }
