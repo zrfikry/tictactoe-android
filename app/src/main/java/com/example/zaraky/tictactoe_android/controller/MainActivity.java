@@ -14,7 +14,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     Board board = new Board();
-    Button[] allButton;
+    Button[] allButtons;
     TextView winner;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         winner = findViewById(R.id.winnerText);
-        allButton = getAllButton();
+        allButtons = getAllButtons();
     }
 
     public void onCellClick(View v) {
@@ -53,16 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void resetGame(View v) {
         for (int i = 0; i < 9; i++) {
-            allButton[i].setText("");
-            allButton[i].setEnabled(true);
+            allButtons[i].setText("");
         }
-
         board.reset();
-
         winner.setText("");
     }
 
-    private Button[] getAllButton () {
+    private Button[] getAllButtons () {
         Button[] buttons = new Button[9];
         for (int i = 0; i < 9; i++) {
             int id = getResources().getIdentifier("btn"+i, "id", getPackageName());
