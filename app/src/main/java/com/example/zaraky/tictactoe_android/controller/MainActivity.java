@@ -28,33 +28,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCellClick(View v) {
         Button btn = (Button) v;
-        btn.setText(board.player.toString());
-        btn.setEnabled(false);
 
         // mark the cell
         String tag = btn.getTag().toString();
         int row = Integer.valueOf(tag.substring(0, 1));
         int col = Integer.valueOf(tag.substring(1, 2));
-        board.markCell(row, col);
+
+        if (board.markCell(row, col)) {
+            btn.setText(board.player.toString());
+        }
 
         // check if win
         if (board.isCurrentPlayerWin(row, col)) {
             winner.setText(board.player.toString() + " win!");
-            disableBoard();
+            board.gameOver();
         } else if (board.isDraw()) { // check if draw
             winner.setText("Draw!");
-            disableBoard();
+            board.gameOver();
         } else {
             board.changePlayer();
         }
     }
 
-
-    private void disableBoard () {
-        for (int i = 0; i < 9; i++) {
-            allButton[i].setEnabled(false);
-        }
-    }
 
     public void resetGame(View v) {
         for (int i = 0; i < 9; i++) {

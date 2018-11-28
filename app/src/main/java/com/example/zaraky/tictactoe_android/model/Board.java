@@ -3,6 +3,9 @@ package com.example.zaraky.tictactoe_android.model;
 public class Board {
     public Cell[][] cells = new Cell[3][3];
     public Player player;
+    private GameState state;
+
+    private enum GameState { PLAYING, GAMEOVER };
 
     public Board() {
         reset();
@@ -11,6 +14,7 @@ public class Board {
     public void reset() {
         clearCells();
         player = Player.X;
+        state = GameState.PLAYING;
     }
 
     private void clearCells() {
@@ -41,8 +45,16 @@ public class Board {
         return emptyCell == 0;
     }
 
-    public void markCell(int row, int col) {
-        cells[row][col].setPlayer(player);
+    public boolean markCell(int row, int col) {
+        if (state != GameState.GAMEOVER) {
+            cells[row][col].setPlayer(player);
+            return true;
+        }
+        return false;
+    }
+
+    public void gameOver() {
+        state = GameState.GAMEOVER;
     }
 
     public boolean isCurrentPlayerWin(int row, int col) {

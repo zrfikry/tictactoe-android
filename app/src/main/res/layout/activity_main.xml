@@ -23,7 +23,7 @@
                 android:onClick="resetGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="#00000000"
                 android:textColor="@color/white"
                 android:text="RESET"
                 android:textSize="16dp"
