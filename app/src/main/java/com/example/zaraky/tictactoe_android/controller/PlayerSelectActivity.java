@@ -23,6 +23,8 @@ import retrofit2.Response;
 public class PlayerSelectActivity extends AppCompatActivity {
 
     public ArrayList<String> userList = new ArrayList<>();
+    Spinner list1;
+    Spinner list2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class PlayerSelectActivity extends AppCompatActivity {
 
         UserService service = RetrofitClientInstance.getRetrofitInstance().create(UserService.class);
         Call<List<User>> call = service.getAllUser();
+
+        list1 = findViewById(R.id.selectPlayer1);
+        list2 = findViewById(R.id.selectPlayer2);
 
         call.enqueue(new Callback<List<User>>() {
             @Override
@@ -49,18 +54,23 @@ public class PlayerSelectActivity extends AppCompatActivity {
     }
 
     public void initializePlayer() {
-        Spinner list1 = findViewById(R.id.selectPlayer1);
-        Spinner list2 = findViewById(R.id.selectPlayer2);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, userList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         list1.setAdapter(adapter);
         list2.setAdapter(adapter);
-
     }
 
     public void startGame(View v) {
         Intent intent = new Intent(PlayerSelectActivity.this, MainActivity.class);
-        startActivity(intent);
+        String player1 = list1.getSelectedItem().toString();
+        String player2 = list2.getSelectedItem().toString();
+
+        if (player1.equals(player2)) {
+            Toast.makeText(this, "Player Name should be different", Toast.LENGTH_LONG).show();
+        } else {
+            intent.putExtra("player1", player1);
+            intent.putExtra("player2", player2);
+            startActivity(intent);
+        }
     }
 }

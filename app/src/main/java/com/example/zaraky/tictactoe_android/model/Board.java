@@ -1,9 +1,13 @@
 package com.example.zaraky.tictactoe_android.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Board {
     public Cell[][] cells = new Cell[3][3];
     public Player player;
     private GameState state;
+    private Map<Player, String> playerNames = new HashMap<>();
 
     private enum GameState { PLAYING, GAMEOVER };
 
@@ -23,6 +27,14 @@ public class Board {
                 cells[i][j] = new Cell();
             }
         }
+    }
+
+    public void setPlayerName(Player symbol, String name) {
+        playerNames.put(symbol, name);
+    }
+
+    public String getPlayerName(Player symbol) {
+        return playerNames.get(symbol);
     }
 
     public void changePlayer() {
